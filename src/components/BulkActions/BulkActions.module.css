@@ -1,0 +1,74 @@
+.bulkActions {
+  background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+  border: 1px solid #667eea;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.count {
+  font-weight: 600;
+  color: #667eea;
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.completeBtn, .deleteBtn, .clearBtn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.completeBtn {
+  background: #10b981;
+  color: white;
+}
+
+.completeBtn:hover {
+  background: #059669;
+  transform: scale(1.02);
+}
+
+.deleteBtn {
+  background: #ef4444;
+  color: white;
+}
+
+.deleteBtn:hover {
+  background: #dc2626;
+  transform: scale(1.02);
+}
+
+.clearBtn {
+  background: #6b7280;
+  color: white;
+}
+
+.clearBtn:hover {
+  background: #4b5563;
+  transform: scale(1.02);
+}
+
+@media (max-width: 640px) {
+  .bulkActions {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .actions {
+    justify-content: center;
+  }
+}

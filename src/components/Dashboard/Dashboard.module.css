@@ -1,0 +1,162 @@
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.statCard, .actionsCard {
+  background: var(--bg-card, white);
+  padding: 1.25rem;
+  border-radius: 1rem;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 60, 48, 0.1);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 115, 128, 0.2);
+}
+
+.statCard:hover, .actionsCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 115, 128, 0.2);
+  border-color: #007380;
+}
+
+.statValue {
+  font-size: 2rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #0A3C30 0%, #007380 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 0.5rem;
+}
+
+.statLabel {
+  color: var(--text-secondary, #6b7280);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.5rem;
+}
+
+.statTrend {
+  font-size: 0.75rem;
+  color: var(--text-secondary, #9ca3af);
+}
+
+.progressBar {
+  width: 100%;
+  height: 6px;
+  background: rgba(0, 115, 128, 0.2);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-top: 0.5rem;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #0A3C30, #007380);
+  transition: width 0.3s ease;
+  border-radius: 3px;
+  position: relative;
+  overflow: hidden;
+}
+
+.progressFill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.actionsCard {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #0A3C30 0%, #007380 100%);
+  border: none;
+}
+
+.viewToggle, .clearBtn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.viewToggle {
+  background: white;
+  color: #0A3C30;
+}
+
+.viewToggle:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 115, 128, 0.3);
+  background: #f0f7f4;
+}
+
+.clearBtn {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.clearBtn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Dark mode specific */
+[data-theme="dark"] .statCard,
+[data-theme="dark"] .actionsCard {
+  background: #0A3C30;
+  border-color: #007380;
+}
+
+[data-theme="dark"] .statValue {
+  background: linear-gradient(135deg, #00d4ff 0%, #007380 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+[data-theme="dark"] .viewToggle {
+  background: #0A3C30;
+  color: #00d4ff;
+  border: 1px solid #007380;
+}
+
+[data-theme="dark"] .viewToggle:hover {
+  background: #007380;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .dashboard {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.75rem;
+  }
+  
+  .statCard, .actionsCard {
+    padding: 1rem;
+  }
+  
+  .statValue {
+    font-size: 1.5rem;
+  }
+}

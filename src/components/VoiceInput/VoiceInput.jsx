@@ -45,13 +45,14 @@ const VoiceInput = ({ onAddTask }) => {
     let description = "";
     let priority = "Medium";
     let dueDate = "";
+    let tags = [];
     
-    // Extract title (everything from start until "description" or "priority" or "date" or "save")
+    // Extract title (everything from start until "description" or "priority" or "date" or "tags" or "save")
     let remainingText = text;
     
     // Check for "title" keyword
     if (lowerText.includes("title")) {
-      const titleMatch = text.match(/title\s+(.+?)(?=\s+description\s+|\s+priority\s+|\s+date\s+|\s+save\s+|$)/i);
+      const titleMatch = text.match(/title\s+(.+?)(?=\s+description\s+|\s+priority\s+|\s+date\s+|\s+tags\s+|\s+save\s+|$)/i);
       if (titleMatch) {
         title = titleMatch[1].trim();
         remainingText = remainingText.replace(titleMatch[0], '');
@@ -59,14 +60,14 @@ const VoiceInput = ({ onAddTask }) => {
         // If "title" word is there but no clear boundary
         const afterTitle = text.split(/title\s+/i)[1];
         if (afterTitle) {
-          title = afterTitle.split(/\s+(?:description|priority|date|save)\s+/i)[0].trim();
+          title = afterTitle.split(/\s+(?:description|priority|date|tags|save)\s+/i)[0].trim();
         }
       }
     }
     
     // If no title found with keyword, take first few words until next keyword
     if (!title) {
-      const firstWords = text.split(/\s+(?:description|priority|date|save)\s+/i)[0];
+      const firstWords = text.split(/\s+(?:description|priority|date|tags|save)\s+/i)[0];
       if (firstWords && !firstWords.toLowerCase().includes('description')) {
         title = firstWords.trim();
       }
@@ -74,13 +75,13 @@ const VoiceInput = ({ onAddTask }) => {
     
     // Extract description
     if (lowerText.includes("description")) {
-      const descMatch = text.match(/description\s+(.+?)(?=\s+priority\s+|\s+date\s+|\s+save\s+|$)/i);
+      const descMatch = text.match(/description\s+(.+?)(?=\s+priority\s+|\s+date\s+|\s+tags\s+|\s+save\s+|$)/i);
       if (descMatch) {
         description = descMatch[1].trim();
       } else {
         const afterDesc = text.split(/description\s+/i)[1];
         if (afterDesc) {
-          description = afterDesc.split(/\s+(?:priority|date|save)\s+/i)[0].trim();
+          description = afterDesc.split(/\s+(?:priority|date|tags|save)\s+/i)[0].trim();
         }
       }
     }
@@ -107,13 +108,29 @@ const VoiceInput = ({ onAddTask }) => {
     
     // Extract date
     if (lowerText.includes("date")) {
-      const dateMatch = text.match(/date\s+(.+?)(?=\s+save\s+|$)/i);
+      const dateMatch = text.match(/date\s+(.+?)(?=\s+tags\s+|\s+save\s+|$)/i);
       if (dateMatch) {
         dueDate = parseDate(dateMatch[1].trim());
       } else {
         const afterDate = text.split(/date\s+/i)[1];
         if (afterDate) {
-          dueDate = parseDate(afterDate.split(/\s+save\s+/i)[0].trim());
+          dueDate = parseDate(afterDate.split(/\s+(?:tags|save)\s+/i)[0].trim());
+        }
+      }
+    }
+    
+    // Extract tags (NEW!)
+    if (lowerText.includes("tags") || lowerText.includes("tag")) {
+      const tagsMatch = text.match(/tags?\s+(.+?)(?=\s+save\s+|$)/i);
+      if (tagsMatch) {
+        const tagsStr = tagsMatch[1].trim();
+        // Split tags by comma, space, or both
+        tags = tagsStr.split(/[,\s]+/).filter(tag => tag.length > 0);
+      } else {
+        const afterTags = text.split(/tags?\s+/i)[1];
+        if (afterTags) {
+          const tagsStr = afterTags.split(/\s+save\s+/i)[0].trim();
+          tags = tagsStr.split(/[,\s]+/).filter(tag => tag.length > 0);
         }
       }
     }
@@ -125,14 +142,17 @@ const VoiceInput = ({ onAddTask }) => {
     }
     
     // Clean up title - remove any leftover keywords
-    title = title.replace(/description|priority|date|save/gi, '').trim();
+    title = title.replace(/description|priority|date|tags?|save/gi, '').trim();
     
     // Capitalize title
     if (title) {
       title = title.charAt(0).toUpperCase() + title.slice(1);
     }
     
-    return { title, description, priority, dueDate };
+    // Clean tags: remove special chars and lowercase
+    tags = tags.map(tag => tag.toLowerCase().replace(/[^a-z0-9]/g, '')).filter(tag => tag.length > 0);
+    
+    return { title, description, priority, dueDate, tags };
   };
 
   const parseDate = (dateStr) => {
@@ -223,7 +243,7 @@ const VoiceInput = ({ onAddTask }) => {
               description: parsed.description || "",
               priority: parsed.priority,
               dueDate: parsed.dueDate || "",
-              tags: ["voice"]
+              tags: parsed.tags && parsed.tags.length > 0 ? parsed.tags : ["voice"]
             };
             
             onAddTask(taskData);
@@ -236,6 +256,9 @@ const VoiceInput = ({ onAddTask }) => {
               const formatted = new Date(taskData.dueDate).toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
               feedback += `Due date: ${formatted}. `;
             }
+            if (taskData.tags && taskData.tags.length > 0) {
+              feedback += `Tags: ${taskData.tags.join(", ")}. `;
+            }
             feedback += `Task added successfully.`;
             
             speakText(feedback);
@@ -243,7 +266,7 @@ const VoiceInput = ({ onAddTask }) => {
             speakText("No title found. Please say title first.");
           }
         } else {
-          speakText("Please say your command with save at the end. For example: Title task management system description full stack development priority high date August 2027 save");
+          speakText("Please say your command with save at the end. For example: Title task management system description full stack development priority high date August 2027 tags work,urgent save");
         }
         
         setIsListening(false);
@@ -298,13 +321,13 @@ const VoiceInput = ({ onAddTask }) => {
             <div style={{ marginTop: '30px', background: 'rgba(0,0,0,0.5)', padding: '20px', borderRadius: '15px' }}>
               <div style={{ color: '#00d4ff', marginBottom: '15px' }}>📋 Example:</div>
               <div style={{ fontSize: '14px', lineHeight: '1.8' }}>
-                "Title task management system description full stack development priority high date August 2027 save"
+                "Title task management system description full stack development priority high date August 2027 tags work,urgent,project save"
               </div>
             </div>
             
             <div style={{ marginTop: '20px' }}>
               <small style={{ fontSize: '12px', opacity: 0.7 }}>
-                💡 Say any command with "save" at the end
+                💡 Say: title [your title] description [your description] priority [high/medium/low] date [date] tags [tag1,tag2,tag3] save
               </small>
             </div>
           </div>

@@ -8,8 +8,10 @@ const TodoItem = ({ todo, onToggle, onEdit, onDelete, viewMode = "list" }) => {
   const [showDetails, setShowDetails] = useState(false);
   const [editForm, setEditForm] = useState({
     title: todo.title,
-    description: todo.description,
+    description: todo.description || "",
     priority: todo.priority,
+    dueDate: todo.dueDate || "",
+    tags: todo.tags ? todo.tags.join(", ") : "",
   });
 
   const priorityColors = {
@@ -25,11 +27,23 @@ const TodoItem = ({ todo, onToggle, onEdit, onDelete, viewMode = "list" }) => {
   };
 
   const isOverdue = todo.dueDate && new Date(todo.dueDate) < new Date() && !todo.completed;
+  const isDueToday = todo.dueDate && new Date(todo.dueDate).toDateString() === new Date().toDateString() && !todo.completed;
 
   const handleEditSubmit = (e) => {
     e.preventDefault();
     if (editForm.title.trim()) {
-      onEdit(todo.id, editForm);
+      // Parse tags from comma-separated string to array
+      const tagsArray = editForm.tags 
+        ? editForm.tags.split(",").map(tag => tag.trim()).filter(tag => tag.length > 0)
+        : [];
+      
+      onEdit(todo.id, {
+        title: editForm.title,
+        description: editForm.description,
+        priority: editForm.priority,
+        dueDate: editForm.dueDate || null,
+        tags: tagsArray,
+      });
       setIsEditing(false);
     }
   };
@@ -54,6 +68,16 @@ const TodoItem = ({ todo, onToggle, onEdit, onDelete, viewMode = "list" }) => {
     return "Just now";
   };
 
+  const formatDueDate = (dateString) => {
+    if (!dateString) return null;
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { 
+      year: 'numeric', 
+      month: 'short', 
+      day: 'numeric' 
+    });
+  };
+
   if (isEditing) {
     return (
       <li className={`${styles.item} ${styles.editing}`}>
@@ -62,29 +86,48 @@ const TodoItem = ({ todo, onToggle, onEdit, onDelete, viewMode = "list" }) => {
             type="text"
             value={editForm.title}
             onChange={(e) => setEditForm({ ...editForm, title: e.target.value })}
-            placeholder="Title"
+            placeholder="Task title *"
             className={styles.editInput}
             autoFocus
+            required
           />
-          <input
-            type="text"
+          <textarea
             value={editForm.description}
             onChange={(e) => setEditForm({ ...editForm, description: e.target.value })}
-            placeholder="Description"
-            className={styles.editInput}
+            placeholder="Description (optional)"
+            className={styles.editTextarea}
+            rows="2"
           />
           <select
             value={editForm.priority}
             onChange={(e) => setEditForm({ ...editForm, priority: e.target.value })}
             className={styles.editSelect}
           >
-            <option value="Low">Low Priority</option>
-            <option value="Medium">Medium Priority</option>
-            <option value="High">High Priority</option>
+            <option value="Low">🟢 Low Priority</option>
+            <option value="Medium">🟡 Medium Priority</option>
+            <option value="High">🔴 High Priority</option>
           </select>
+          
+          {/* Due Date Input */}
+          <input
+            type="date"
+            value={editForm.dueDate}
+            onChange={(e) => setEditForm({ ...editForm, dueDate: e.target.value })}
+            className={styles.editInput}
+          />
+          
+          {/* Tags Input */}
+          <input
+            type="text"
+            value={editForm.tags}
+            onChange={(e) => setEditForm({ ...editForm, tags: e.target.value })}
+            placeholder="Tags (comma separated, e.g., work, urgent, personal)"
+            className={styles.editInput}
+          />
+          
           <div className={styles.editActions}>
-            <button type="submit" className={styles.saveBtn}>Save</button>
-            <button type="button" onClick={() => setIsEditing(false)} className={styles.cancelBtn}>Cancel</button>
+            <button type="submit" className={styles.saveBtn}>💾 Save Changes</button>
+            <button type="button" onClick={() => setIsEditing(false)} className={styles.cancelBtn}>❌ Cancel</button>
           </div>
         </form>
       </li>
@@ -114,6 +157,9 @@ const TodoItem = ({ todo, onToggle, onEdit, onDelete, viewMode = "list" }) => {
             {isOverdue && (
               <span className={styles.overdueBadge}>⚠️ Overdue</span>
             )}
+            {isDueToday && !isOverdue && (
+              <span className={styles.todayBadge}>📅 Today</span>
+            )}
           </div>
           
           {(showDetails || viewMode === "grid") && (
@@ -124,8 +170,10 @@ const TodoItem = ({ todo, onToggle, onEdit, onDelete, viewMode = "list" }) => {
               
               <div className={styles.itemMeta}>
                 {todo.dueDate && (
-                  <span className={styles.dueDate}>
-                    📅 Due: {new Date(todo.dueDate).toLocaleDateString()}
+                  <span className={`${styles.dueDate} ${isOverdue ? styles.dueDateOverdue : isDueToday ? styles.dueDateToday : styles.dueDateUpcoming}`}>
+                    📅 Due: {formatDueDate(todo.dueDate)}
+                    {isOverdue && " (Overdue!)"}
+                    {isDueToday && !isOverdue && " (Today!)"}
                   </span>
                 )}
                 <span className={styles.date}>

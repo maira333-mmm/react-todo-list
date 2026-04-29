@@ -235,3 +235,100 @@
 .cancelBtn:hover {
   background: #4b5563;
 }
+/* Textarea for description */
+.editTextarea {
+  padding: 0.625rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-family: inherit;
+  resize: vertical;
+  transition: all 0.2s;
+}
+
+.editTextarea:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* Due Date Badge Variations */
+.dueDate {
+  font-size: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.375rem;
+  background: #f3f4f6;
+  color: #4b5563;
+}
+
+.dueDateOverdue {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.dueDateToday {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.dueDateUpcoming {
+  background: #e0e7ff;
+  color: #4338ca;
+}
+
+/* Today Badge */
+.todayBadge {
+  padding: 0.25rem 0.75rem;
+  background: #d1fae5;
+  color: #065f46;
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* Edit Form Improvements */
+.editForm {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.editInput, .editSelect, .editTextarea {
+  padding: 0.625rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-family: inherit;
+  transition: all 0.2s;
+  background: white;
+}
+
+.editInput:focus, .editSelect:focus, .editTextarea:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* Date Input Specific */
+input[type="date"].editInput {
+  color-scheme: light;
+}
+
+/* Responsive Edit Form */
+@media (max-width: 768px) {
+  .editForm {
+    gap: 0.5rem;
+  }
+  
+  .editInput, .editSelect, .editTextarea {
+    padding: 0.5rem;
+    font-size: 0.813rem;
+  }
+  
+  .editActions {
+    flex-direction: column;
+  }
+}

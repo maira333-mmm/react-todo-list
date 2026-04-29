@@ -410,3 +410,58 @@ select:focus-visible {
   color: #004B67;
   border-color: #004B67;
 }
+/* Due Date Badge Styles */
+.dueDateBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.375rem;
+  font-size: 0.725rem;
+  font-weight: 500;
+  background: rgba(0, 115, 128, 0.15);
+  color: #00d4ff;
+  border: 1px solid rgba(0, 115, 128, 0.3);
+}
+
+.dueDateBadge.overdue {
+  background: rgba(103, 0, 24, 0.15);
+  color: #ff6b8a;
+  border-color: rgba(255, 107, 138, 0.3);
+}
+
+.dueDateBadge.today {
+  background: rgba(0, 115, 128, 0.25);
+  color: #00ffcc;
+  border-color: rgba(0, 255, 204, 0.3);
+  animation: pulse 1s infinite;
+}
+
+.dueDateBadge.upcoming {
+  background: rgba(0, 115, 128, 0.1);
+  color: #b8d4cc;
+}
+
+/* Filter Dropdown Additions */
+.filterSelect {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  cursor: pointer;
+  font-size: 0.875rem;
+}
+
+.filterSelect:hover {
+  border-color: var(--accent);
+}
+
+/* Due Date in Todo Item */
+.todoDueDate {
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 0.25rem;
+}

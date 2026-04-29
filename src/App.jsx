@@ -56,17 +56,29 @@ function App() {
   const addTodo = useCallback(async (todoData) => {
     const newTodo = {
       id: Date.now(),
-      ...todoData,
+      title: todoData.title,
+      description: todoData.description || "",
+      priority: todoData.priority || "Medium",
+      dueDate: todoData.dueDate || null,  // ✅ Due date field added
+      tags: todoData.tags || [],
       completed: false,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
-      tags: todoData.tags || [],
-      dueDate: todoData.dueDate || null,
     };
     pushState(todos);
     setTodos(prev => [newTodo, ...prev]);
-    logActivity("create", { taskId: newTodo.id, title: newTodo.title });
-    toast.success("Task created successfully!");
+    logActivity("create", { taskId: newTodo.id, title: newTodo.title, dueDate: newTodo.dueDate });
+    toast.success(`Task created: ${newTodo.title}`);
+    
+    // Voice feedback for due date
+    if (newTodo.dueDate) {
+      const formattedDate = new Date(newTodo.dueDate).toLocaleDateString('en-US', { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+      });
+      toast.info(`Due date: ${formattedDate}`);
+    }
   }, [setTodos, pushState, logActivity, todos]);
 
   const updateTodo = useCallback((id, updates) => {
@@ -135,6 +147,20 @@ function App() {
       if (filter === "Active") return !todo.completed;
       if (filter === "Completed") return todo.completed;
       if (["Low", "Medium", "High"].includes(filter)) return todo.priority === filter;
+      // Due date filter
+      if (filter === "Overdue") {
+        return todo.dueDate && new Date(todo.dueDate) < new Date() && !todo.completed;
+      }
+      if (filter === "Due Today") {
+        const today = new Date().toISOString().split('T')[0];
+        return todo.dueDate === today && !todo.completed;
+      }
+      if (filter === "This Week") {
+        const today = new Date();
+        const nextWeek = new Date(today);
+        nextWeek.setDate(today.getDate() + 7);
+        return todo.dueDate && new Date(todo.dueDate) <= nextWeek && new Date(todo.dueDate) >= today && !todo.completed;
+      }
       return true;
     });
 
@@ -150,6 +176,12 @@ function App() {
       let comparison = 0;
       if (sortBy === "date") {
         comparison = new Date(a.createdAt) - new Date(b.createdAt);
+      } else if (sortBy === "dueDate") {
+        // Sort by due date
+        if (!a.dueDate && !b.dueDate) comparison = 0;
+        else if (!a.dueDate) comparison = 1;
+        else if (!b.dueDate) comparison = -1;
+        else comparison = new Date(a.dueDate) - new Date(b.dueDate);
       } else if (sortBy === "priority") {
         const priorityOrder = { High: 3, Medium: 2, Low: 1 };
         comparison = priorityOrder[b.priority] - priorityOrder[a.priority];
@@ -191,7 +223,7 @@ function App() {
           <div className={styles.headerTop}>
             <motion.div initial={{ y: -50, opacity: 0 }} animate={{ y: 0, opacity: 1 }}>
               <h1>TaskSwift AI <span className={styles.beta}>2026</span></h1>
-              <p className={styles.subtitle}>  Lightning Fast Task Management with Voice & AI</p>
+              <p className={styles.subtitle}>⚡ Lightning Fast Task Management with Voice & AI</p>
             </motion.div>
             <div className={styles.headerActions}>
               <ThemeToggle theme={theme} setTheme={setTheme} />

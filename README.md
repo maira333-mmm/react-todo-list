@@ -539,17 +539,16 @@ Made with 💙 by **Maira Alam**
 ⭐ If you found this project helpful, consider giving it a **Star**!
 
 <br>
-
-<a href="https://github.com/maira333-mmm/react-todo-list">
-<img src="https://img.shields.io/badge/📂_SOURCE_CODE-181717?style=for-the-badge&logo=github&logoColor=white" alt="Source Code"/>
+<a href="https://github.com/maira333-mmm/react-todo-list" target="_blank">
+  <img src="https://img.shields.io/badge/📂_SOURCE_CODE-181717?style=for-the-badge&logo=github&logoColor=white" alt="Source Code"/>
 </a>
 
-<a href="https://react-todo-list-o3jx-hzbvhxevx-mairas-projects-0f919ce8.vercel.app/">
-<img src="https://img.shields.io/badge/🚀_LIVE_DEMO-00C853?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Demo"/>
+<a href="https://react-todo-list-o3jx-hzbvhxevx-mairas-projects-0f919ce8.vercel.app/" target="_blank">
+  <img src="https://img.shields.io/badge/🚀_LIVE_DEMO-00C853?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Demo"/>
 </a>
 
-<a href="https://github.com/maira333-mmm/react-todo-list/commits/main">
-<img src="https://img.shields.io/github/last-commit/maira333-mmm/react-todo-list?style=for-the-badge&label=LAST%20UPDATE" alt="Last Update"/>
+<a href="https://github.com/maira333-mmm/react-todo-list/commits/main" target="_blank">
+  <img src="https://img.shields.io/github/last-commit/maira333-mmm/react-todo-list?style=for-the-badge&label=LAST%20UPDATE" alt="Last Update"/>
 </a>
 
 </div>

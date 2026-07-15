@@ -1,50 +1,106 @@
+<div align="center">
 
-## Voice Feedback
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&height=210&color=0:1E3A5F,50:2563EB,100:60A5FA&text=TaskSwift%20AI&fontColor=ffffff&fontSize=50&fontAlignY=38&desc=React%20%7C%20TypeScript%20%7C%20AI%20Assistant&descAlignY=60&animation=fadeIn" alt="TaskSwift AI Header" />
 
-- **Success**: "Task saved. Title: [title]. Description: [description]. Priority: [priority]. Due date: [date]. Tags: [tags]. Task added successfully."
-- **Error**: "No title found. Please say title first."
+<br>
+
+<img src="https://readme-typing-svg.demolab.com?font=Inter&weight=600&size=20&duration=2800&pause=700&color=2563EB&center=true&vCenter=true&repeat=true&width=700&height=52&lines=AI-Powered+Task+Management+App.;Voice+Input+%7C+Dark+Mode+%7C+Offline+Support.;Smart+Analytics+%7C+Undo%2FRedo+%7C+Bulk+Actions.;Built+with+React+%2B+Vite+%2B+TypeScript." alt="Typing Animation" />
+
+<br><br>
+
+A modern **AI-Powered Task Management Application** built with **React, TypeScript, and Vite**. Features voice input, dark mode, offline support, smart analytics, undo/redo functionality, and an AI assistant for productivity tips.
+
+<br>
+
+<a href="https://github.com/maira333-mmm/react-todo-list">
+  <img src="https://img.shields.io/badge/📂_SOURCE_CODE-181717?style=for-the-badge&logo=github&logoColor=white" alt="Source Code"/>
+</a>
+
+<a href="https://github.com/maira333-mmm/react-todo-list/commits/main">
+  <img src="https://img.shields.io/github/last-commit/maira333-mmm/react-todo-list?style=for-the-badge&label=LAST%20UPDATE" alt="Last Update"/>
+</a>
+
+<br><br>
+
+<img src="https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB"/>
+<img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white"/>
+<img src="https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=vite&logoColor=white"/>
+<img src="https://img.shields.io/badge/CSS_Modules-1572B6?style=flat-square&logo=css3&logoColor=white"/>
+<img src="https://img.shields.io/badge/Framer_Motion-0055FF?style=flat-square&logo=framer&logoColor=white"/>
+<img src="https://img.shields.io/badge/LocalStorage-FF6B6B?style=flat-square"/>
+
+</div>
 
 ---
 
-# 🤖 AI Assistant
+# 📋 Table of Contents
 
-## Features
+- 📖 About
+- ✨ Features
+- 🎯 Key Highlights
+- 📁 Project Structure
+- 🚀 Getting Started
+- 🔧 Installation
+- 💻 Usage Guide
+- 🎨 UI/UX Design
+- 🛠 Technologies Used
+- 🌍 Browser Compatibility
+- 🤝 Contributing
+- 📬 Contact
+- 📄 License
+- 🙏 Acknowledgements
+
+---
+
+# 📖 About
+
+**TaskSwift AI** is a modern, AI-powered task management application that helps users organize, track, and complete tasks efficiently. Built with React and TypeScript, it features voice input, dark mode, offline support, smart analytics, and an intelligent AI assistant for productivity insights.
+
+## 🎯 Key Highlights
+
+- 🎤 **Voice Input** - Add tasks using voice commands
+- 🤖 **AI Assistant** - Smart productivity tips and suggestions
+- 🌙 **Dark Mode** - Toggle between light and dark themes
+- 📶 **Offline Support** - Works without internet connection
+- 🔄 **Undo/Redo** - Full undo/redo functionality
+- 📊 **Analytics** - Visual task completion analytics
+- 🏷️ **Tags & Priority** - Organize tasks with tags and priorities
+- 📅 **Due Dates** - Set and track task deadlines
+- 🔍 **Search & Filter** - Find tasks quickly
+
+---
+
+# ✨ Features
 
 | Feature | Description |
 |---------|-------------|
-| **Priority Suggestions** | Analyzes task text for urgency keywords |
-| **Productivity Tips** | Random productivity tips for better workflow |
-| **Task Suggestions** | Smart recommendations for task management |
-| **Productivity Score** | Analyzes completion patterns |
+| 🎤 **Voice Input** | Add tasks using natural language voice commands |
+| 🤖 **AI Assistant** | Get productivity tips and task suggestions |
+| 🌙 **Dark Mode** | Toggle between light and dark themes |
+| 📶 **Offline Support** | Works offline with sync when online |
+| 🔄 **Undo/Redo** | Full undo/redo functionality (Ctrl+Z/Ctrl+Y) |
+| 📊 **Analytics Dashboard** | Visual task completion analytics |
+| 🏷️ **Tags** | Add and filter tasks by tags |
+| 📅 **Due Dates** | Set due dates with overdue/today indicators |
+| 🔍 **Search** | Search tasks by title, description, or tags |
+| 📂 **Filters** | Filter by status (All, Active, Completed, Priority) |
+| 📱 **Responsive** | Works on all devices |
+| 💾 **Local Storage** | Data persistence in browser |
 
-## How It Works
-
-```javascript
-// Priority detection
-const highKeywords = ['urgent', 'asap', 'deadline', 'critical', 'important'];
-const mediumKeywords = ['soon', 'review', 'update', 'check'];
-
-// Returns priority with confidence score
-{
-  priority: 'High',
-  confidence: 0.85,
-  reason: 'Urgent keywords detected'
-}
 ---
 
 # 📁 Project Structure
 
 ```text
-taskflow-ai/
+react-todo-list/
 │
 ├── README.md
-├── LICENSE
+├── index.html
 ├── package.json
 ├── package-lock.json
 ├── vite.config.js
-├── eslint.config.js
 ├── vercel.json
-├── index.html
+├── eslint.config.js
 ├── .gitignore
 │
 ├── public/
@@ -52,29 +108,64 @@ taskflow-ai/
 │   └── manifest.json
 │
 ├── src/
-│   ├── main.jsx
-│   ├── App.jsx
-│   ├── App.module.css
-│   ├── index.css
+│   ├── main.jsx                         # Entry point
+│   ├── App.jsx                          # Main App component
+│   ├── App.module.css                   # App styles
+│   ├── index.css                        # Global styles
 │   │
 │   ├── components/
-│   │   ├── Dashboard/
 │   │   ├── TodoForm/
+│   │   │   ├── TodoForm.jsx
+│   │   │   └── TodoForm.module.css
+│   │   │
 │   │   ├── TodoItem/
+│   │   │   ├── TodoItem.jsx
+│   │   │   └── TodoItem.module.css
+│   │   │
+│   │   ├── Dashboard/
+│   │   │   ├── Dashboard.jsx
+│   │   │   └── Dashboard.module.css
+│   │   │
 │   │   ├── Filters/
+│   │   │   ├── Filters.jsx
+│   │   │   └── Filters.module.css
+│   │   │
 │   │   ├── Analytics/
+│   │   │   ├── AnalyticsDashboard.jsx
+│   │   │   └── AnalyticsDashboard.module.css
+│   │   │
 │   │   ├── ActivityTimeline/
+│   │   │   ├── ActivityTimeline.jsx
+│   │   │   └── ActivityTimeline.module.css
+│   │   │
 │   │   ├── BulkActions/
+│   │   │   ├── BulkActions.jsx
+│   │   │   └── BulkActions.module.css
+│   │   │
 │   │   ├── ConfirmDialog/
+│   │   │   ├── ConfirmDialog.jsx
+│   │   │   └── ConfirmDialog.module.css
+│   │   │
 │   │   ├── KeyboardShortcuts/
-│   │   ├── VoiceInput/
+│   │   │   ├── KeyboardShortcuts.jsx
+│   │   │   └── KeyboardShortcuts.module.css
+│   │   │
 │   │   ├── ThemeToggle/
-│   │   └── OfflineStatus/
+│   │   │   ├── ThemeToggle.jsx
+│   │   │   └── ThemeToggle.module.css
+│   │   │
+│   │   ├── OfflineStatus/
+│   │   │   ├── OfflineStatus.jsx
+│   │   │   └── OfflineStatus.module.css
+│   │   │
+│   │   └── VoiceInput/
+│   │       ├── VoiceInput.jsx
+│   │       └── VoiceInput.module.css
 │   │
 │   ├── hooks/
 │   │   ├── useLocalStorage.js
-│   │   ├── useUndoRedo.js
 │   │   ├── useOfflineSync.js
+│   │   ├── useUndoRedo.js
 │   │   └── taskAnalytics.js
 │   │
 │   ├── utils/
@@ -86,32 +177,30 @@ taskflow-ai/
 │       ├── globals.css
 │       └── animations.css
 │
-└── dist/
-```
-
+└── dist/                               # Build output
 ---
 
 # 🚀 Getting Started
 
 ## 📋 Requirements
 
-- 🟦 Node.js 18+
+- 🟩 Node.js 18+
 - 📦 npm or Yarn
-- 🌐 Modern Browser (Chrome/Edge Recommended)
+- 🌐 Modern Web Browser
 
 ---
 
-## 1️⃣ Clone Repository
+## 🔧 Installation
+
+### 1️⃣ Clone Repository
 
 ```bash
-git clone https://github.com/maira333-mmm/taskflow-ai.git
+git clone https://github.com/maira333-mmm/react-todo-list.git
 
-cd taskflow-ai
+cd react-todo-list
 ```
 
----
-
-## 2️⃣ Install Dependencies
+### 2️⃣ Install Dependencies
 
 ```bash
 npm install
@@ -123,9 +212,7 @@ or
 yarn install
 ```
 
----
-
-## 3️⃣ Start Development Server
+### 3️⃣ Run Development Server
 
 ```bash
 npm run dev
@@ -143,9 +230,7 @@ Open:
 http://localhost:5173
 ```
 
----
-
-## 4️⃣ Build for Production
+### 4️⃣ Build for Production
 
 ```bash
 npm run build
@@ -157,33 +242,45 @@ or
 yarn build
 ```
 
+### 5️⃣ Preview Production Build
+
+```bash
+npm run preview
+```
+
+or
+
+```bash
+yarn preview
+```
+
 ---
 
 # 💻 Usage Guide
 
-## 📝 Create Tasks
+## 🎤 Add Tasks with Voice
 
-- Add title
-- Description
-- Priority
-- Due Date
-- Tags
-- Click **Create Task**
-
----
-
-## 🎤 Voice Commands
-
-Click the microphone and say:
+Click the microphone button and say:
 
 ```
-Title Complete README
+Title Complete project report
+Description Final report for client
 Priority High
-Date Tomorrow
+Date August 15 2026
+Tags work,urgent
 Save
 ```
 
-TaskFlow AI automatically creates the task.
+---
+
+## ✍ Add Tasks Manually
+
+- Enter Task Title
+- Add Description (Optional)
+- Select Priority
+- Choose Due Date
+- Add Tags
+- Click **Create Task**
 
 ---
 
@@ -191,39 +288,10 @@ TaskFlow AI automatically creates the task.
 
 | Action | Description |
 |---------|-------------|
-| ✔ Complete | Mark task completed |
-| ✏ Edit | Update task |
+| ✔ Complete | Mark task as completed |
+| ✏ Edit | Modify existing task |
 | 🗑 Delete | Remove task |
-| 🔍 View | Open task details |
-| ☑ Select | Multi-select tasks |
-
----
-
-## 🔍 Filters
-
-- All Tasks
-- Active
-- Completed
-- High Priority
-- Medium Priority
-- Low Priority
-- Overdue
-- Due Today
-- This Week
-
----
-
-## 📊 Analytics
-
-The dashboard shows:
-
-- Total Tasks
-- Active Tasks
-- Completed Tasks
-- Completion Rate
-- Weekly Progress
-- Overdue Tasks
-- Priority Distribution
+| 📋 Bulk Actions | Complete/Delete multiple tasks |
 
 ---
 
@@ -235,20 +303,40 @@ The dashboard shows:
 | Ctrl + F | Search |
 | Ctrl + Z | Undo |
 | Ctrl + Y | Redo |
-| Ctrl + D | Toggle Layout |
+| Ctrl + D | Toggle View |
 | Ctrl + H | Analytics |
 | Ctrl + T | Theme |
 
 ---
 
-# 🎨 UI / UX
+## 🔍 Filtering & Sorting
+
+### Filters
+
+- All
+- Active
+- Completed
+- High Priority
+- Medium Priority
+- Low Priority
+
+### Sorting
+
+- Date
+- Priority
+- Title
+- Ascending / Descending
+
+---
+
+# 🎨 UI / UX Design
 
 ## 🎨 Color Palette
 
 | Color | Hex |
 |---------|---------|
-| Primary | #0A3C30 |
-| Secondary | #007380 |
+| Primary Dark | #0A3C30 |
+| Accent Teal | #007380 |
 | Success | #10B981 |
 | Warning | #F59E0B |
 | Danger | #EF4444 |
@@ -258,63 +346,14 @@ The dashboard shows:
 
 ## ✨ Features
 
-- 🌙 Dark / Light Mode
-- 📱 Responsive Design
+- 🌙 Dark / Light Theme
 - 🎤 Voice Input
-- 📊 Analytics Dashboard
+- 📱 Responsive Layout
 - 💾 Local Storage
 - ♻ Undo / Redo
-- 📶 Offline Support
-- ⚡ Fast Performance
 - ✨ Smooth Animations
-
----
-
-# 📊 Workflow
-
-```text
-             Start
-               │
-               ▼
-        Create New Task
-               │
-               ▼
-      Fill Task Information
-               │
-               ▼
-        Save to LocalStorage
-               │
-               ▼
-      View Task Dashboard
-               │
-      ┌────────┴────────┐
-      ▼                 ▼
- Edit Task         Complete Task
-      │                 │
-      └────────┬────────┘
-               ▼
-        Update Analytics
-               │
-               ▼
-        Save Automatically
-               │
-               ▼
-              End
-```
-
----
-
-# 📈 Analytics Dashboard
-
-| Metric | Description |
-|---------|-------------|
-| 📋 Total Tasks | Number of Tasks |
-| ⏳ Active | Pending Tasks |
-| ✅ Completed | Finished Tasks |
-| 📊 Completion Rate | Percentage |
-| ⚠ Overdue | Past Due Tasks |
-| 📅 Weekly Progress | Weekly Activity |
-| 🔥 Priority Chart | High / Medium / Low |
+- 📊 Analytics Dashboard
+- ⚡ Fast Performance
 
 ---
 
@@ -322,24 +361,24 @@ The dashboard shows:
 
 | Technology | Purpose |
 |------------|----------|
-| React 18 | Frontend |
+| React 18 | UI Framework |
+| TypeScript | Type Safety |
 | Vite | Build Tool |
-| JavaScript | Programming |
 | CSS Modules | Styling |
 | Framer Motion | Animations |
 | Sonner | Toast Notifications |
-| LocalStorage | Persistence |
+| LocalStorage | Data Persistence |
 | Web Speech API | Voice Recognition |
 
 ---
 
-# 🌍 Browser Support
+# 🌍 Browser Compatibility
 
 | Browser | Supported |
 |----------|-----------|
 | Chrome | ✅ |
 | Firefox | ✅ |
-| Edge | ✅ |
+| Microsoft Edge | ✅ |
 | Safari | ✅ |
 | Opera | ✅ |
 | Mobile Browsers | ✅ |
@@ -363,6 +402,29 @@ Push Branch
       ▼
 Open Pull Request
 ```
+
+### Contribution Guidelines
+
+- Fork the repository
+- Create a feature branch
+
+```bash
+git checkout -b feature/AmazingFeature
+```
+
+- Commit your changes
+
+```bash
+git commit -m "Add Amazing Feature"
+```
+
+- Push your branch
+
+```bash
+git push origin feature/AmazingFeature
+```
+
+- Open a Pull Request
 
 ---
 
@@ -394,9 +456,9 @@ Open Pull Request
 
 # 📄 License
 
-Licensed under the **MIT License**.
+This project is licensed under the **MIT License**.
 
-See the **LICENSE** file for more details.
+See the **LICENSE** file for more information.
 
 ---
 
@@ -404,25 +466,24 @@ See the **LICENSE** file for more details.
 
 | Feature | Description |
 |----------|-------------|
-| ☁ Cloud Sync | Sync Tasks Across Devices |
-| 📱 Mobile App | React Native Version |
-| 🔔 Notifications | Task Reminders |
-| 📅 Calendar Integration | Google Calendar |
-| 🌍 Multi-language | i18n Support |
-| 🏷 Smart Tags | AI Tag Suggestions |
-| 📊 Advanced Analytics | Charts & Reports |
-| 🤖 AI Scheduling | Intelligent Task Planning |
+| 🔔 Push Notifications | Task Reminders |
+| 📱 PWA Support | Install as Mobile App |
+| ☁ Cloud Sync | Sync Across Devices |
+| 👥 Team Collaboration | Shared Task Lists |
+| 📊 Advanced Analytics | Productivity Insights |
+| 🎨 Custom Themes | Additional Color Schemes |
+| 📅 Calendar View | Calendar Integration |
 
 ---
 
 # 🐛 Troubleshooting
 
 <details>
-<summary><b>🎤 Voice Recognition Not Working</b></summary>
+<summary><b>🎤 Voice Input Not Working</b></summary>
 
-- Use Chrome or Microsoft Edge.
 - Allow microphone permission.
-- Check microphone settings.
+- Use Chrome or Microsoft Edge.
+- Ensure Web Speech API is supported.
 - Speak clearly.
 
 </details>
@@ -430,9 +491,9 @@ See the **LICENSE** file for more details.
 ---
 
 <details>
-<summary><b>💾 Tasks Not Saving</b></summary>
+<summary><b>💾 Data Not Saving</b></summary>
 
-- Enable LocalStorage.
+- Check LocalStorage is enabled.
 - Clear browser cache.
 - Refresh the application.
 
@@ -441,11 +502,15 @@ See the **LICENSE** file for more details.
 ---
 
 <details>
-<summary><b>⚡ Slow Performance</b></summary>
+<summary><b>⚡ Build Failing</b></summary>
 
-- Close unused browser tabs.
-- Disable unnecessary extensions.
-- Use the latest browser version.
+```bash
+rm -rf node_modules package-lock.json
+
+npm install
+
+npm run build
+```
 
 </details>
 
@@ -458,7 +523,7 @@ See the **LICENSE** file for more details.
 | React | UI Framework |
 | Vite | Build Tool |
 | Framer Motion | Animations |
-| Sonner | Notifications |
+| Sonner | Toast Notifications |
 | Web Speech API | Voice Recognition |
 | GitHub | Repository Hosting |
 | Shields.io | Badges |
@@ -467,20 +532,24 @@ See the **LICENSE** file for more details.
 
 <div align="center">
 
-## ❤️ Built with React, JavaScript & AI
+## ❤️ Built with React, TypeScript & Love
 
 Made with 💙 by **Maira Alam**
 
-⭐ If you like this project, don't forget to **Star** the repository.
+⭐ If you found this project helpful, consider giving it a **Star**!
 
 <br>
 
-<a href="https://github.com/maira333-mmm/taskflow-ai">
-<img src="https://img.shields.io/badge/📂_SOURCE_CODE-181717?style=for-the-badge&logo=github&logoColor=white"/>
+<a href="https://github.com/maira333-mmm/react-todo-list">
+<img src="https://img.shields.io/badge/📂_SOURCE_CODE-181717?style=for-the-badge&logo=github&logoColor=white" alt="Source Code"/>
 </a>
 
-<a href="https://github.com/maira333-mmm/taskflow-ai/commits/main">
-<img src="https://img.shields.io/github/last-commit/maira333-mmm/taskflow-ai?style=for-the-badge&label=LAST%20UPDATE"/>
+<a href="https://react-todo-list-o3jx-hzbvhxevx-mairas-projects-0f919ce8.vercel.app/">
+<img src="https://img.shields.io/badge/🚀_LIVE_DEMO-00C853?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Demo"/>
+</a>
+
+<a href="https://github.com/maira333-mmm/react-todo-list/commits/main">
+<img src="https://img.shields.io/github/last-commit/maira333-mmm/react-todo-list?style=for-the-badge&label=LAST%20UPDATE" alt="Last Update"/>
 </a>
 
 </div>
